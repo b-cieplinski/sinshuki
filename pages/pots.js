@@ -6,10 +6,10 @@ import {collection, onSnapshot, where, query, doc, serverTimestamp, getDoc} from
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import BasicLayout from '../components/products/BasicLayout'
+import ProductList from '../components/products/ProductList'
 
 
-const Pots = () => {
+const Outdoor = () => {
     const [pots, setPots] = useState([]);
 
 
@@ -25,17 +25,19 @@ const Pots = () => {
 
   return (
 
-      <div>
-      <Header />
-    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-3 items-center p-10">
-    {pots.map((pot) => (
+    <div className="bg-rose-50">
+    <Header />
+    <div >
+    <ProductListHeader />
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mx-auto container mt-10 md:my-10">
+ {pots.map((indoor) => (
+<ProductList key={indoor.id} id={indoor.id} image={indoor.data().image} name={indoor.data().name} price={indoor.data().price}/>
+      ))}
 
-      <BasicLayout key={pot.id} id={pot.id} image={pot.data().image} name={pot.data().name} price={pot.data().price}/>
-
-        ))}
     </div>
-    </div>
+  </div>
+  </div>
   )
 }
 
-export default Pots
+export default Outdoor
