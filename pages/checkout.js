@@ -1,9 +1,11 @@
 import React from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import { useSession, signIn, signOut } from "next-auth/react"
 
 
-const checkout = () => {
+const Checkout = () => {
+    const {data: session} = useSession();
   return (
     <div className="bg-rose-50 h-full mb-20">
         <Header />
@@ -59,7 +61,11 @@ const checkout = () => {
                     </div>
                     <div className="py-5">
                     <h4>Total:</h4>
-                        <button className="border-2 border-black py-2 px-4 mx-auto bg-blue w-full bg-indigo-200">Pay for everything <span className="font-bold">$619.99</span></button>
+                    {session ? 
+                    (<button className="border-2 border-black py-2 px-4 mx-auto bg-blue w-full bg-indigo-200">Pay for everything <span className="font-bold">$619.99</span></button>)
+                    :
+                    (<button className="border-2 border-black py-2 px-4 mx-auto bg-blue w-full bg-indigo-200" onClick={signIn}>Sign in or Sign Up to finalize the purchase.</button>)
+                    } 
                     </div>
                 </div>
 
@@ -84,4 +90,4 @@ const checkout = () => {
   )
 }
 
-export default checkout
+export default Checkout

@@ -3,6 +3,7 @@ import { SearchIcon, ShoppingBagIcon, UserIcon, DotsHorizontalIcon} from '@heroi
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useSession, signIn, signOut } from "next-auth/react"
 
 
 const linkList = [
@@ -39,6 +40,7 @@ const linkList = [
 ];
 
 const Header = () => {
+  const {data: session} = useSession();
   const router = useRouter()
   const [showSidebar, setShowSidebar] = useState(false);
   return (
@@ -136,18 +138,28 @@ const Header = () => {
     </div>
 
     <div className="flex items-center mx-auto justify-end space-x-2">
-    <button onClick={(e) => setUserSettings(e.target)} className=" hover:bg-black hover:text-white hover:font-normalflex items-center space-x-2 border-2 p-2 rounded-full border-black">
+    <button className=" hover:bg-black hover:text-white hover:font-normalflex items-center space-x-2 border-2 p-2 rounded-full border-black">
         <SearchIcon className="h-4"/>
         </button>
         <Link href="/checkout" passHref>
         <button className=" hover:bg-black hover:text-white hover:font-normalflex items-center space-x-2 border-2 p-2 rounded-full border-black">
         <ShoppingBagIcon className="h-4"/>
         </button></Link>
-        <Link href="/account" passHref>
-        <button className=" hover:bg-black hover:text-white hover:font-normalflex items-center space-x-2 border-2 p-2 rounded-full border-black">
-        <UserIcon className="h-4"/>
-        </button></Link>
-    </div>
+  
+       {session ? (
+         <>
+         <button onClick={() => router.push("/account")} className=" hover:bg-black hover:text-white hover:font-normalflex items-center space-x-2 border-2 rounded-full border-black">
+        <img className="rounded-full h-8 w-8" src={session?.user?.image}/>
+        </button>
+        </>
+       ) : (
+        <>
+         <button onClick={() => router.push("/auth/signin")} className=" hover:bg-black hover:text-white hover:font-normalflex items-center space-x-2 border-2 rounded-full border-black">
+        <UserIcon className="h-4 m-2"/>
+        </button>
+        </>
+       )}
+         </div>
     </header>
   )
 }
