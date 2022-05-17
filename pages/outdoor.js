@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import BasicLayout from '../components/products/BasicLayout'
+import ProductList from '../components/products/ProductList'
 
 
 const Outdoor = () => {
@@ -25,16 +26,18 @@ const Outdoor = () => {
 
   return (
 
-      <div>
-      <Header />
-    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-3 items-center p-10">
-    {outdoors.map((outdoor) => (
+    <div className="bg-rose-50">
+    <Header />
+    <div >
+    <ProductListHeader />
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mx-auto container mt-10 md:my-10">
+ {outdoors.map((indoor) => (
+<ProductList key={indoor.id} id={indoor.id} image={indoor.data().image} name={indoor.data().name} price={indoor.data().price}/>
+      ))}
 
-      <BasicLayout key={outdoor.id} id={outdoor.id} image={outdoor.data().image} name={outdoor.data().name} price={outdoor.data().price}/>
-
-        ))}
     </div>
-    </div>
+  </div>
+  </div>
   )
 }
 

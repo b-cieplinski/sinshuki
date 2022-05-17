@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../../components/Header'
 import ProductListHeader from '../../components/products/ProductListHeader'
-import ProductListVariantA1 from '../../components/products/ProductListVariantA1'
+import ProductListVariantA from '../../components/products/ProductListVariantA'
 import ProductListVariantB from '../../components/products/ProductListVariantB'
 import ProductListVariantC from '../../components/products/ProductListVariantC'
 
@@ -10,7 +10,7 @@ const products = () => {
     <div className="bg-rose-50">
         <Header />
         <ProductListHeader />
-        <ProductListVariantA1 />
+        <ProductListVariantA />
         <ProductListVariantB />
         <ProductListVariantC />
         <div></div>

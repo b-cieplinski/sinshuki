@@ -10,6 +10,7 @@ const products = () => {
     <div className="bg-rose-50">
         <Header />
         <ProductListHeader />
+        <ProductListVariantA />
         <ProductListVariantA1 />
         <ProductListVariantB />
         <ProductListVariantC />

@@ -3,13 +3,9 @@ import Header from '../components/Header'
 import ProductListHeader from '../components/products/ProductListHeader'
 import { db } from '../firebase'
 import {collection, onSnapshot, where, query, doc, serverTimestamp, getDoc} from "@firebase/firestore"
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+import ProductList from '../components/products/ProductList'
 
-import BasicLayout from '../components/products/BasicLayout'
-
-
-const Seeds = () => {
+const Indoor = () => {
     const [seeds, setSeeds] = useState([]);
 
 
@@ -21,21 +17,21 @@ const Seeds = () => {
         })
     }, [db])
 
-
-
   return (
 
-      <div>
+      <div className="bg-rose-50">
       <Header />
-    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-3 items-center p-10">
-    {seeds.map((seed) => (
-
-      <BasicLayout key={seed.id} id={seed.id} image={seed.data().image} name={seed.data().name} price={seed.data().price}/>
-
+      <div >
+      <ProductListHeader/>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mx-auto container mt-10 md:my-10">
+   {seeds.map((seed) => (
+<ProductList key={seed.id} id={seed.id} image={seed.data().image} name={seed.data().name} price={seed.data().price}/>
         ))}
+
+      </div>
     </div>
     </div>
   )
 }
 
-export default Seeds
+export default Indoor

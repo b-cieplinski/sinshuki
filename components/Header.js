@@ -2,6 +2,8 @@ import { useState } from "react";
 import { SearchIcon, ShoppingBagIcon, UserIcon, DotsHorizontalIcon} from '@heroicons/react/solid'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+
 
 const linkList = [
   {
@@ -37,6 +39,7 @@ const linkList = [
 ];
 
 const Header = () => {
+  const router = useRouter()
   const [showSidebar, setShowSidebar] = useState(false);
   return (
     <header className="sticky top-0 z-50 grid grid-cols-3 bg-white border-b-2 py-4 px-5 md:px-10 border-black">
@@ -116,13 +119,13 @@ const Header = () => {
           showSidebar ? "translate-y-0 " : "translate-y-full"
         }`}
       >
-        <h3 className="mt-4 text-5xl font-bold text-black font-widest bg-hugs bg-contain bg-no-repeat bg-right">
-          <li className="list-none"><button className="px-5 py-1 bg-black text-white mb-4">Woman</button></li>
-          <li className="list-none"><button className="px-5 py-1 bg-black text-white my-4">Men</button></li>
-          <li className="list-none"><button className="px-5 py-1 bg-black text-white my-4">Kids</button></li>
-          <li className="list-none"><button className="px-5 py-1 bg-black text-white my-4">Gifts</button></li>
-          <li className="list-none"><button className="px-5 py-1 bg-black text-white my-4">Specials</button></li>
-          <li className="list-none"><button className="px-5 py-1 bg-black text-white my-4">Sales</button></li>
+        <h3 className="mt-4 text-5xl font-bold text-black font-widest bg-contain bg-no-repeat bg-right">
+          <li className="list-none"><button className="px-5 py-1 bg-black text-white mb-4" onClick={() => router.push("/indoor")}>Indoor</button></li>
+          <li className="list-none"><button className="px-5 py-1 bg-black text-white my-4" onClick={() => router.push("/ondoor")}>Outdoor</button></li>
+          <li className="list-none"><button className="px-5 py-1 bg-black text-white my-4" onClick={() => router.push("/pots")}>Pots</button></li>
+          <li className="list-none"><button className="px-5 py-1 bg-black text-white my-4" onClick={() => router.push("/seeds")}>Seeds</button></li>
+          <li className="list-none"><button className="px-5 py-1 bg-black text-white my-4" onClick={() => router.push("/accessories")}>Accessories</button></li>
+          <li className="list-none"><button className="px-5 py-1 bg-black text-white my-4" onClick={() => router.push("/sales")}>Sales</button></li>
         </h3>
       </div>
     </>
